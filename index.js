@@ -1,5 +1,5 @@
 const { Client, GatewayIntentBits } = require('discord.js');
-const { channel_log } = require('./config.js');
+const { channel_log, token } = require('./config.js');
 
 const messageCreate = require('./src/controller/messageCreate');
 const registerMember = require('./src/controller/registerMember');
