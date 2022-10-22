@@ -1,10 +1,10 @@
 const { Client, GatewayIntentBits } = require('discord.js');
-const { channel_log, token } = require('./config.js');
+const { channel_log, token, clientId, corleoneApi, guildId } = require('./config.js');
 
 const messageCreate = require('./src/controller/messageCreate');
 const registerMember = require('./src/controller/registerMember');
 
-const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent] });
+const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.GuildMessageTyping, GatewayIntentBits.MessageContent] });
 
 const CHANNEL_LOGS = channel_log;
 
@@ -16,7 +16,7 @@ client.once('ready', () => {
 client.on("messageCreate", (message) => {
     if (message.channelId === CHANNEL_LOGS) {
         messageCreate.handleMessage(message, (apiMsg) => {
-            client.channels.cache.get(CHANNEL_LOGS).send(apiMsg)
+           console.log(apiMsg)
         })
     }
 

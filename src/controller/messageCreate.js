@@ -5,9 +5,10 @@ function handleCallService(body, callback) {
     axios.post(`${corleoneApi}/log/store/${body.passaport}`, body).then(() => { callback(`passaport ${body.passaport} added a new item in chest`) }).catch(error => callback(error.response.data.message || error.message))
 }
 
-function handleMessage({ content: message, author }, callback) {
+function handleMessage({ embeds, author }, callback) {
     try {
-        if (author.bot) return;
+        if (author.id !== "1032091532586655805") return;
+        const message = embeds[0].data.description.replaceAll("*", "")
         const arrayMessage = message.split("\n");
         const body = {
             passaport: Number(arrayMessage[0].replace(/\D/g, "")),
