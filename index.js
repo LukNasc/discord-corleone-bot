@@ -24,6 +24,7 @@ client.on("messageCreate", (message) => {
 
 client.on('interactionCreate', interaction => {
     if (!interaction.isChatInputCommand()) return;
+    if (interaction.guildId !== guildId) return;
 
     const { commandName } = interaction;
 
