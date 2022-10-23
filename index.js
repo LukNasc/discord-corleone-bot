@@ -1,5 +1,6 @@
 const { Client, GatewayIntentBits } = require('discord.js');
 const { channel_log, token, clientId, corleoneApi, guildId } = require('./config.js');
+const deployCommands = require('./deploy-commands.js');
 
 const messageCreate = require('./src/controller/messageCreate');
 const registerMember = require('./src/controller/registerMember');
@@ -10,14 +11,13 @@ const CHANNEL_LOGS = channel_log;
 
 client.once('ready', () => {
     console.log('============ Bot Iniciado ===============');
+    deployCommands();
 
 });
 
 client.on("messageCreate", (message) => {
     if (message.channelId === CHANNEL_LOGS) {
-        messageCreate.handleMessage(message, (apiMsg) => {
-           console.log(apiMsg)
-        })
+        messageCreate.handleMessage(message, console.log)
     }
 
 });
