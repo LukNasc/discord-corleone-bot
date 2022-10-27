@@ -16,7 +16,7 @@ function handleMessage({ embeds, author }, callback) {
         const body = {
             passaport: Number(arrayMessage[0].replace(/\D/g, "")),
             item: itemName.trim(),
-            ammount: Number(itemAmmount.trim()),
+            ammount: Number(itemAmmount.replace(".", "").trim()),
             action: arrayMessage[1].split(":")[0].trim(),
             date: new Date()
         }
